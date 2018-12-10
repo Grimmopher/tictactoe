@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="myApp"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="myApp">
+				<Option output="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/myApp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 myApp"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="myApp/fast">
+				<Option output="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/myApp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 myApp/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.cpp">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.h">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.cpp">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.h">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.cpp">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.h">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.cpp">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/main.cpp">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/tictactoe/GameBoard.cpp">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/tictactoe/GameBoard.h">
+			<Option target="myApp"/>
+		</Unit>
+		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
