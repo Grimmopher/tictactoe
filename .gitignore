@@ -1,7 +1,6 @@
+cmake-build-debug/*
 .idea/*
 .ds_store
-
-cmake-build-debug/TicTacToe
 
 # Prerequisites
 *.d
