@@ -3,9 +3,11 @@
 
 
 class Clock {
+private:
+    double deltaTime;
 public:
-    Clock();
-
+    double getDeltaTime() const;
+    void Tick();
 };
 
 

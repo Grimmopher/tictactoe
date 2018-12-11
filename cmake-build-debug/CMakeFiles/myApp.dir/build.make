@@ -96,22 +96,9 @@ CMakeFiles/myApp.dir/src/tictactoe/GameBoard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myApp.dir/src/tictactoe/GameBoard.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chris/Documents/Projects/cpp/myApp/src/tictactoe/GameBoard.cpp -o CMakeFiles/myApp.dir/src/tictactoe/GameBoard.cpp.s
 
-CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.o: CMakeFiles/myApp.dir/flags.make
-CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.o: ../src/Engine/Clock/Time.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.o -c /Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.cpp
-
-CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.cpp > CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.i
-
-CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.cpp -o CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.s
-
 CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o: CMakeFiles/myApp.dir/flags.make
 CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o: ../src/Engine/Renderer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o -c /Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.cpp
 
 CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.i: cmake_force
@@ -124,7 +111,7 @@ CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.s: cmake_force
 
 CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o: CMakeFiles/myApp.dir/flags.make
 CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o: ../src/Engine/Clock/Clock.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o -c /Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.cpp
 
 CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.i: cmake_force
@@ -140,7 +127,6 @@ myApp_OBJECTS = \
 "CMakeFiles/myApp.dir/src/main.cpp.o" \
 "CMakeFiles/myApp.dir/src/Engine/Engine.cpp.o" \
 "CMakeFiles/myApp.dir/src/tictactoe/GameBoard.cpp.o" \
-"CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.o" \
 "CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o" \
 "CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o"
 
@@ -150,12 +136,11 @@ myApp_EXTERNAL_OBJECTS =
 myApp: CMakeFiles/myApp.dir/src/main.cpp.o
 myApp: CMakeFiles/myApp.dir/src/Engine/Engine.cpp.o
 myApp: CMakeFiles/myApp.dir/src/tictactoe/GameBoard.cpp.o
-myApp: CMakeFiles/myApp.dir/src/Engine/Clock/Time.cpp.o
 myApp: CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o
 myApp: CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o
 myApp: CMakeFiles/myApp.dir/build.make
 myApp: CMakeFiles/myApp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable myApp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable myApp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/myApp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

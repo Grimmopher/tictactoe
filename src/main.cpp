@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Engine/Engine.h"
 
 using namespace std;
 
@@ -7,26 +8,8 @@ void PlayTurn(char boardDisplay[9], bool boardPlacement[9], bool isPlayerOne);
 bool CheckWinner(char board[9]);
 
 int main() {
-
-    bool hasWinner = false;
-    bool isPlayerOne = true;
-    char boardDisplay[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    bool boardPlacement[9] = {false, false, false, false, false, false, false, false, false};
-
-    do {
-        Render(boardDisplay, isPlayerOne);
-        PlayTurn(boardDisplay, boardPlacement, isPlayerOne);
-
-        hasWinner = CheckWinner(boardDisplay);
-        if (hasWinner) {
-            Render(boardDisplay, isPlayerOne);
-        } else {
-            isPlayerOne = !isPlayerOne;
-        }
-    } while (!hasWinner);
-
-    const string player = isPlayerOne ? "Player One" : "Player Two";
-    cout << player << " wins" << endl;
+    unique_ptr<Engine> engine = unique_ptr<Engine>(new Engine());
+    engine->Init();
     return 0;
 }
 

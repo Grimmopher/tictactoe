@@ -86,12 +86,6 @@
 		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.h">
 			<Option target="myApp"/>
 		</Unit>
-		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.cpp">
-			<Option target="myApp"/>
-		</Unit>
-		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.h">
-			<Option target="myApp"/>
-		</Unit>
 		<Unit filename="/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.cpp">
 			<Option target="myApp"/>
 		</Unit>

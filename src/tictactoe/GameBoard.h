@@ -1,13 +1,21 @@
-//
-// Created by Chris Grimm on 2018-12-10.
-//
-
 #ifndef MYAPP_GAMEBOARD_H
 #define MYAPP_GAMEBOARD_H
 
 
-class GameBoard {
+#include <memory>
+#include "../Engine/Clock/Clock.h"
+#include "../Engine/Renderer.h"
 
+class GameBoard {
+private:
+    std::shared_ptr<Clock> clock;
+    std::shared_ptr<Renderer> renderer;
+    bool exitGame;
+
+public:
+    GameBoard(std::shared_ptr<Clock> c, std::shared_ptr<Renderer> r);
+    void Tick();
+    bool ShouldExit();
 };
 
 

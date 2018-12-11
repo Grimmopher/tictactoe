@@ -3,8 +3,17 @@
 
 
 class Renderer {
+private:
+    int lastBlock;
+    int currentBlock;
+    void HighlightBlock(int block, bool highlight);
+    int CheckInput(int currentBlock);
 public:
+    Renderer();
+
     void Render();
+
+    virtual ~Renderer();
 };
 
 

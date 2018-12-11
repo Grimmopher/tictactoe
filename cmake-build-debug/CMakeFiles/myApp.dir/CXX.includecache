@@ -6,43 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.cpp
-Clock.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.cpp
-Time.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Time.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.cpp
-memory
--
-Engine.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.h
-Clock/Clock.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.h
-Renderer.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.h
-
 /Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.cpp
-Renderer.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/main.cpp
 iostream
 -
+curses.h
+-
+Renderer.h
+/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
 
-/Users/chris/Documents/Projects/cpp/myApp/src/tictactoe/GameBoard.cpp
-GameBoard.h
-/Users/chris/Documents/Projects/cpp/myApp/src/tictactoe/GameBoard.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/tictactoe/GameBoard.h
+/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
 
