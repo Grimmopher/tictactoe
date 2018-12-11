@@ -123,33 +123,6 @@ myApp/fast:
 	$(MAKE) -f CMakeFiles/myApp.dir/build.make CMakeFiles/myApp.dir/build
 .PHONY : myApp/fast
 
-src/Engine/Clock/Clock.o: src/Engine/Clock/Clock.cpp.o
-
-.PHONY : src/Engine/Clock/Clock.o
-
-# target to build an object file
-src/Engine/Clock/Clock.cpp.o:
-	$(MAKE) -f CMakeFiles/myApp.dir/build.make CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o
-.PHONY : src/Engine/Clock/Clock.cpp.o
-
-src/Engine/Clock/Clock.i: src/Engine/Clock/Clock.cpp.i
-
-.PHONY : src/Engine/Clock/Clock.i
-
-# target to preprocess a source file
-src/Engine/Clock/Clock.cpp.i:
-	$(MAKE) -f CMakeFiles/myApp.dir/build.make CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.i
-.PHONY : src/Engine/Clock/Clock.cpp.i
-
-src/Engine/Clock/Clock.s: src/Engine/Clock/Clock.cpp.s
-
-.PHONY : src/Engine/Clock/Clock.s
-
-# target to generate assembly for a file
-src/Engine/Clock/Clock.cpp.s:
-	$(MAKE) -f CMakeFiles/myApp.dir/build.make CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.s
-.PHONY : src/Engine/Clock/Clock.cpp.s
-
 src/Engine/Engine.o: src/Engine/Engine.cpp.o
 
 .PHONY : src/Engine/Engine.o
@@ -267,9 +240,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... myApp"
-	@echo "... src/Engine/Clock/Clock.o"
-	@echo "... src/Engine/Clock/Clock.i"
-	@echo "... src/Engine/Clock/Clock.s"
 	@echo "... src/Engine/Engine.o"
 	@echo "... src/Engine/Engine.i"
 	@echo "... src/Engine/Engine.s"

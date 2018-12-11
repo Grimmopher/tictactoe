@@ -7,7 +7,7 @@ using namespace std;
 Renderer::Renderer() {
     //begin curses
     initscr();
-    cbreak();
+    raw();
     noecho();
     keypad(stdscr, true);
 
@@ -127,6 +127,11 @@ int Renderer::CheckInput(int currentBlock) {
             else currentBlock += 1;
         }
             break;
+
+        case 10: {
+            //return key
+            //mark block for player
+        }
         default:
             return currentBlock;
     }

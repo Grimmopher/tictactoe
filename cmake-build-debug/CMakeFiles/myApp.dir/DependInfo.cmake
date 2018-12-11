@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Clock/Clock.cpp" "/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles/myApp.dir/src/Engine/Clock/Clock.cpp.o"
   "/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Engine.cpp" "/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles/myApp.dir/src/Engine/Engine.cpp.o"
   "/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.cpp" "/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles/myApp.dir/src/Engine/Renderer.cpp.o"
   "/Users/chris/Documents/Projects/cpp/myApp/src/main.cpp" "/Users/chris/Documents/Projects/cpp/myApp/cmake-build-debug/CMakeFiles/myApp.dir/src/main.cpp.o"

@@ -3,17 +3,17 @@
 
 
 #include <memory>
-#include "../Engine/Clock/Clock.h"
 #include "../Engine/Renderer.h"
 
 class GameBoard {
 private:
-    std::shared_ptr<Clock> clock;
     std::shared_ptr<Renderer> renderer;
     bool exitGame;
+    char board[9] = {' '};
+    bool CheckWinner(char blocks[9]);
 
 public:
-    GameBoard(std::shared_ptr<Clock> c, std::shared_ptr<Renderer> r);
+    GameBoard(std::shared_ptr<Renderer> r);
     void Tick();
     bool ShouldExit();
 };

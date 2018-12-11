@@ -6,13 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.cpp
-iostream
--
-curses.h
--
-Renderer.h
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
-
-/Users/chris/Documents/Projects/cpp/myApp/src/Engine/Renderer.h
-
