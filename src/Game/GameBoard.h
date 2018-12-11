@@ -3,17 +3,17 @@
 
 
 #include <memory>
-#include "../Engine/Renderer.h"
+#include "../Engine/Terminal.h"
 
 class GameBoard {
 private:
-    std::shared_ptr<Renderer> renderer;
+    std::shared_ptr<Terminal> renderer;
     bool exitGame;
     char board[9] = {' '};
     bool CheckWinner(char blocks[9]);
 
 public:
-    GameBoard(std::shared_ptr<Renderer> r);
+    GameBoard(std::shared_ptr<Terminal> r);
     void Tick();
     bool ShouldExit();
 };

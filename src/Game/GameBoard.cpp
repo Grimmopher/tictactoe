@@ -3,7 +3,7 @@
 
 using namespace std;
 
-GameBoard::GameBoard(std::shared_ptr<Renderer> r) {
+GameBoard::GameBoard(std::shared_ptr<Terminal> r) {
     renderer = r;
     exitGame = false;
 }

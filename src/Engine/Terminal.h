@@ -2,18 +2,18 @@
 #define MYAPP_RENDERER_H
 
 
-class Renderer {
+class Terminal {
 private:
     int lastBlock;
     int currentBlock;
     void HighlightBlock(int block, bool highlight);
     int CheckInput(int currentBlock);
 public:
-    Renderer();
+    Terminal();
 
     void Render();
 
-    virtual ~Renderer();
+    virtual ~Terminal();
 };
 
 

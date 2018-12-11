@@ -1,16 +1,16 @@
 #include <memory>
 #include "Engine.h"
-#include "Renderer.h"
-#include "../tictactoe/GameBoard.h"
+#include "Terminal.h"
+#include "../Game/GameBoard.h"
 
 // Creates game loop
-// Creates a Renderer
-// Creates a Game and passes Renderer
+// Creates a Terminal
+// Creates a Game and passes Terminal
 
 using namespace std;
 
 void Engine::Init(){
-    auto renderer = make_shared<Renderer>();
+    auto renderer = make_shared<Terminal>();
     auto gameBoard = make_shared<GameBoard>(renderer);
 
     while (true) {

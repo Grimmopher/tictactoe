@@ -1,10 +1,10 @@
 #include <iostream>
 #include <curses.h>
-#include "Renderer.h"
+#include "Terminal.h"
 
 using namespace std;
 
-Renderer::Renderer() {
+Terminal::Terminal() {
     //begin curses
     initscr();
     raw();
@@ -31,7 +31,7 @@ Renderer::Renderer() {
     refresh();
 }
 
-void Renderer::HighlightBlock(int block, bool highlight) {
+void Terminal::HighlightBlock(int block, bool highlight) {
     int x = 0;
     int y = 0;
 
@@ -101,7 +101,7 @@ void Renderer::HighlightBlock(int block, bool highlight) {
 
 }
 
-int Renderer::CheckInput(int currentBlock) {
+int Terminal::CheckInput(int currentBlock) {
     int key = getch();
     switch (key) {
         case KEY_UP: {
@@ -138,7 +138,7 @@ int Renderer::CheckInput(int currentBlock) {
     return currentBlock;
 }
 
-void Renderer::Render() {
+void Terminal::Render() {
     // curses refresh
     currentBlock = CheckInput(currentBlock);
     HighlightBlock(currentBlock, true);
@@ -147,7 +147,7 @@ void Renderer::Render() {
     lastBlock = currentBlock;
 }
 
-Renderer::~Renderer() {
+Terminal::~Terminal() {
     // end curses
     endwin();
 }
