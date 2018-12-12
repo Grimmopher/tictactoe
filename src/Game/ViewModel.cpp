@@ -35,7 +35,7 @@ void ViewModel::InitBoard() {
     terminal->Print("     |     |     ");
 }
 
-void ViewModel::HighlightBlock(int block, bool highlight, char board[9]) {
+void ViewModel::HighlightBlock(int block, bool highlight, bool isPlayerOne, char board[9]) {
     int x = boardX;
     int y = boardY;
 
@@ -88,12 +88,14 @@ void ViewModel::HighlightBlock(int block, bool highlight, char board[9]) {
             return;
     }
 
-    // 1 is highlighted
-    // 2 is no highlight
+    // 1 is highlighted cyan
+    // 2 is highlighted magenta
+    // 3 is no highlight
     if (highlight) {
-        terminal->ChangeColors(1);
+        int color = isPlayerOne ? 1 : 2;
+        terminal->ChangeColors(color);
     } else {
-        terminal->ChangeColors(2);
+        terminal->ChangeColors(3);
     }
 
     terminal->MoveCursor(x,y);

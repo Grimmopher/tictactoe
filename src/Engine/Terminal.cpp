@@ -12,8 +12,9 @@ Terminal::Terminal() {
     keypad(stdscr, true);
 
     start_color();
-    init_pair(1, COLOR_WHITE, COLOR_CYAN);
-    init_pair(2, COLOR_WHITE, COLOR_BLACK);
+    init_pair(1, COLOR_MAGENTA, COLOR_CYAN);
+    init_pair(2, COLOR_CYAN, COLOR_MAGENTA);
+    init_pair(3, COLOR_WHITE, COLOR_BLACK);
 
     refresh();
 }
@@ -74,8 +75,10 @@ void Terminal::ChangeColors(int color) {
         case 2:
             attron(COLOR_PAIR(2));
             break;
+        case 3:
+            attron(COLOR_PAIR(3));
         default:
-            attron(COLOR_PAIR(2));
+            attron(COLOR_PAIR(3));
             break;
     }
 }

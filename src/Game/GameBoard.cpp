@@ -22,7 +22,7 @@ void GameBoard::ResetBoard() {
         i = ' ';
     }
     viewModel->InitBoard();
-    viewModel->HighlightBlock(currentBlock, true, board);
+    viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);
     // setup players
     // setup instructions
 }
@@ -44,6 +44,8 @@ void GameBoard::Tick() {
             // change player
             isPlayerOne = !isPlayerOne;
             nextTurn = false;
+            // print marker
+            viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);
         }
     }
 
@@ -102,8 +104,8 @@ void GameBoard::MoveHighlight(int move) {
         default:
             break;
     }
-    viewModel->HighlightBlock(currentBlock, true, board);
-    viewModel->HighlightBlock(lastBlock, false, board);
+    viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);
+    viewModel->HighlightBlock(lastBlock, false, isPlayerOne, board);
     lastBlock = currentBlock;
 }
 
@@ -162,8 +164,6 @@ bool GameBoard::MarkBoard(bool isPlayerOne, int block, char *board) {
 
     if (board[block] == ' ') {
         board[block] = marker;
-        // print marker
-        viewModel->HighlightBlock(currentBlock, true, board);
         return true;
     }
 
