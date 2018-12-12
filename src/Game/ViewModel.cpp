@@ -15,7 +15,7 @@ ViewModel::ViewModel(shared_ptr<Terminal> t) {
     Player2Y = 3;
     TitleX = 14;
     TitleY = 1;
-    MessageX = 7;
+    MessageX = 12;
     MessageY = 15;
     InstructionsX = 5;
     InstructionsY = 18;
@@ -31,7 +31,9 @@ void ViewModel::InitBoard() {
     terminal->ChangeColors(3);
 
     terminal->MoveCursor(TitleX,TitleY);
+    terminal->SetBold(true);
     terminal->Print("Tic Tac Toe");
+    terminal->SetBold(false);
 
     PrintPlayers(true);
 
@@ -176,6 +178,7 @@ int ViewModel::CheckInput() {
 
 void ViewModel::Winner(bool isPlayerOne, bool hasWinner) {
     terminal->MoveCursor(MessageX,MessageY);
+    terminal->ChangeColors(3);
     terminal->SetBold(true);
 
     if (hasWinner) {
@@ -200,8 +203,17 @@ void ViewModel::ApplyTurnState(char *board, int currentBlock, bool isPlayerOne, 
     //TODO: make a model class for model parameters
     ChangePlayer(isPlayerOne);
 
-    HighlightBlock(currentBlock, true, isPlayerOne, board);
-    HighlightBlock(lastBlock, false, isPlayerOne, board);
+    // Highlight current block if there are still turns
+    if(hasWinner || isTie) {
+        HighlightBlock(currentBlock, false, isPlayerOne, board);
+    } else {
+        HighlightBlock(currentBlock, true, isPlayerOne, board);
+    }
+
+    // Remove highlight on previous block
+    if(lastBlock != currentBlock) {
+        HighlightBlock(lastBlock, false, isPlayerOne, board);
+    }
     lastBlock = currentBlock;
 
     if(hasWinner || isTie) Winner(isPlayerOne, hasWinner);

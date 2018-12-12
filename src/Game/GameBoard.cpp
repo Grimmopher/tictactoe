@@ -56,10 +56,6 @@ void GameBoard::Tick() {
     if(resetGame) ResetBoard();
 }
 
-bool GameBoard::ShouldExit() {
-    return exitGame;
-}
-
 bool GameBoard::CheckWinner(char blocks[9]){
     if (blocks[0] != ' ' && blocks[1] != ' ' && blocks[2] != ' ' && blocks[0] == blocks[1] && blocks[1] == blocks[2])
         return true;
@@ -81,6 +77,8 @@ bool GameBoard::CheckWinner(char blocks[9]){
 }
 
 void GameBoard::Move(int move) {
+    if(hasWinner || isTie) return;
+
     switch(move){
         case 1: {
             if (currentBlock < 3) currentBlock += 6;
@@ -168,4 +166,8 @@ bool GameBoard::MarkBoard(bool isPlayerOne, int block, char *board) {
     }
 
     return false;
+}
+
+bool GameBoard::ShouldExit() {
+    return exitGame;
 }
