@@ -17,6 +17,8 @@ private:
     int TitleY;
     int InstructionsX;
     int InstructionsY;
+    int MessageX;
+    int MessageY;
     int IdleCursorX;
     int IdleCursorY;
     void PrintPlayers(bool isPlayerOne);

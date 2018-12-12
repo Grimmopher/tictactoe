@@ -72,7 +72,7 @@ bool GameBoard::CheckWinner(char blocks[9]){
         return true;
     else if (blocks[0] != ' ' && blocks[4] != ' ' && blocks[8] != ' ' && blocks[0] == blocks[4] && blocks[4] == blocks[8])
         return true;
-    else if (blocks[6] != ' ' && blocks[5] != ' ' && blocks[2] != ' ' && blocks[6] == blocks[5] && blocks[5] == blocks[2])
+    else if (blocks[6] != ' ' && blocks[4] != ' ' && blocks[2] != ' ' && blocks[6] == blocks[4] && blocks[4] == blocks[2])
         return true;
     return false;
 }

@@ -8,23 +8,23 @@ using namespace std;
 ViewModel::ViewModel(shared_ptr<Terminal> t) {
     terminal = t;
     boardX = 11;
-    boardY = 7;
+    boardY = 5;
     Player1X = 8;
-    Player1Y = 5;
+    Player1Y = 3;
     Player2X = 22;
-    Player2Y = 5;
+    Player2Y = 3;
     TitleX = 14;
-    TitleY = 3;
+    TitleY = 1;
+    MessageX = 7;
+    MessageY = 15;
     InstructionsX = 5;
-    InstructionsY = 20;
+    InstructionsY = 18;
 
     IdleCursorX = 0;
     IdleCursorY = 0;
 }
 
 void ViewModel::InitBoard() {
-    int x = boardX;
-    int y = boardY;
 
     // default board color
     terminal->ChangeColors(3);
@@ -34,23 +34,23 @@ void ViewModel::InitBoard() {
 
     PrintPlayers(true);
 
-    terminal->MoveCursor(x,y);
+    terminal->MoveCursor(boardX,boardY);
     terminal->Print("     |     |     ");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 1);
     terminal->Print("     |     |     ");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 2);
     terminal->Print("_____|_____|_____");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 3);
     terminal->Print("     |     |     ");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 4);
     terminal->Print("     |     |     ");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 5);
     terminal->Print("_____|_____|_____");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 6);
     terminal->Print("     |     |     ");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 7);
     terminal->Print("     |     |     ");
-    terminal->MoveCursor(x,++y);
+    terminal->MoveCursor(boardX,boardY + 8);
     terminal->Print("     |     |     ");
 
     PrintInstructions();
@@ -167,26 +167,32 @@ int ViewModel::CheckInput() {
     return terminal->CheckInput();
 }
 
-void ViewModel::Print(const char *input) {
-    terminal->Print(input);
-}
-
-void ViewModel::MoveCursor(int x, int y) {
-    terminal->MoveCursor(x,y);
-}
-
 void ViewModel::Winner(bool isPlayerOne, bool hasWinner) {
+    terminal->MoveCursor(MessageX,MessageY);
+    terminal->SetBold(true);
+
     if (hasWinner) {
         string msg = isPlayerOne ? "Player One" : "Player Two";
-        msg = msg + " is the winner!";
+        msg = msg + " wins!";
         terminal->Print(msg.c_str());
     } else {
         terminal->Print("TIE");
     }
+
+    terminal->SetBold(false);
+    terminal->MoveCursor(IdleCursorX,IdleCursorY);
 }
 
 void ViewModel::ChangePlayer(bool isPlayerOne) {
     // default board color
     terminal->ChangeColors(3);
     PrintPlayers(isPlayerOne);
+}
+
+void ViewModel::Print(const char *input) {
+    terminal->Print(input);
+}
+
+void ViewModel::MoveCursor(int x, int y) {
+    terminal->MoveCursor(x,y);
 }
