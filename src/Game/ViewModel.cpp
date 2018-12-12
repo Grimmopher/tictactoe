@@ -7,69 +7,82 @@ using namespace std;
 
 ViewModel::ViewModel(shared_ptr<Terminal> t) {
     terminal = t;
+    boardX = 5;
+    boardY = 5;
 }
 
 void ViewModel::InitBoard() {
-    terminal->MoveCursor(0,0);
-    terminal->Print("     |     |     \n");
-    terminal->Print("     |     |     \n");
-    terminal->Print("_____|_____|_____\n");
-    terminal->Print("     |     |     \n");
-    terminal->Print("     |     |     \n");
-    terminal->Print("_____|_____|_____\n");
-    terminal->Print("     |     |     \n");
-    terminal->Print("     |     |     \n");
-    terminal->Print("     |     |     \n");
+    int x = boardX;
+    int y = boardY;
+
+    terminal->MoveCursor(x,y);
+    terminal->Print("     |     |     ");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("     |     |     ");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("_____|_____|_____");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("     |     |     ");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("     |     |     ");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("_____|_____|_____");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("     |     |     ");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("     |     |     ");
+    terminal->MoveCursor(x,++y);
+    terminal->Print("     |     |     ");
 }
 
 void ViewModel::HighlightBlock(int block, bool highlight, char board[9]) {
-    int x = 0;
-    int y = 0;
+    int x = boardX;
+    int y = boardY;
 
     switch(block) {
         case 0:
-            x = 0;
-            y = 0;
+            x += 0;
+            y += 0;
             break;
 
         case 1:
-            x = 6;
-            y = 0;
+            x += 6;
+            y += 0;
             break;
 
         case 2:
-            x = 12;
-            y = 0;
+            x += 12;
+            y += 0;
             break;
 
         case 3:
-            x = 0;
-            y = 3;
+            x += 0;
+            y += 3;
             break;
 
         case 4:
-            x = 6;
-            y = 3;
+            x += 6;
+            y += 3;
             break;
 
         case 5:
-            x = 12;
-            y = 3;
+            x += 12;
+            y += 3;
             break;
 
         case 6:
-            x = 0;
-            y = 6;
+            x += 0;
+            y += 6;
             break;
 
         case 7:
-            x = 6;
-            y = 6;
+            x += 6;
+            y += 6;
             break;
 
         case 8:
-            x = 12;
-            y = 6;
+            x += 12;
+            y += 6;
             break;
         default:
             return;
@@ -92,9 +105,9 @@ void ViewModel::HighlightBlock(int block, bool highlight, char board[9]) {
 
     terminal->Print(str.c_str());
     terminal->MoveCursor(x,++y);
-    if (y < 6) terminal->Print("_____");
+    if (y < boardY + 6) terminal->Print("_____");
     else terminal->Print("     ");
-    terminal->MoveCursor(0,10);
+    terminal->MoveCursor(0,20);
 }
 
 int ViewModel::CheckInput() {

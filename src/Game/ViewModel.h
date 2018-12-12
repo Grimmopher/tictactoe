@@ -7,6 +7,8 @@
 class ViewModel {
 private:
     std::shared_ptr<Terminal> terminal;
+    int boardX;
+    int boardY;
 public:
     explicit ViewModel(std::shared_ptr<Terminal> t);
     void InitBoard();
