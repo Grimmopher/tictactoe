@@ -9,6 +9,7 @@ Terminal::Terminal() {
     initscr();
     raw();
     noecho();
+    curs_set(0);
     keypad(stdscr, true);
 
     start_color();
@@ -95,4 +96,8 @@ void Terminal::SetBold(bool isBold) {
     } else {
         attroff(A_BOLD);
     }
+}
+
+void Terminal::ClearLine() {
+    clrtoeol();
 }

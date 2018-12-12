@@ -11,44 +11,47 @@ GameBoard::GameBoard(std::shared_ptr<ViewModel> vm) {
 
 void GameBoard::ResetBoard() {
     // setup board
+    hasWinner = false;
+    isTie = false;
     exitGame = false;
     resetGame = false;
     nextTurn = false;
     isPlayerOne = true;
     currentBlock = 0;
-    lastBlock = 0;
     turns = 0;
+
+    // set all markers blank
     for (char &i : board) {
         i = ' ';
     }
+
     viewModel->InitBoard();
-    viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);
-    // setup players
-    // setup instructions
+    viewModel->ApplyTurnState(board, currentBlock, isPlayerOne, hasWinner, isTie);
 }
 
 void GameBoard::Tick() {
     // check for input
-    CheckInput();
+    int input = viewModel->CheckInput();
+    ApplyInput(input);
 
     // if mark placed
     if (nextTurn) {
         // check for winner
-        bool hasWinner = CheckWinner(board);
+        hasWinner = CheckWinner(board);
         ++turns;
-        if (hasWinner) {
-            Winner(true);
-        } else if (turns >= 9) {
-            Winner(false);
-        } else {
-            // change player
-            isPlayerOne = !isPlayerOne;
-            viewModel->ChangePlayer(isPlayerOne);
-            nextTurn = false;
-            // print marker
-            viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);
+
+        if (!hasWinner) {
+            if (turns >= 9) {
+                isTie = true;
+            } else {
+                // change player
+                isPlayerOne = !isPlayerOne;
+                nextTurn = false;
+            }
         }
     }
+
+    viewModel->ApplyTurnState(board, currentBlock, isPlayerOne, hasWinner, isTie);
 
     if(resetGame) ResetBoard();
 }
@@ -77,7 +80,7 @@ bool GameBoard::CheckWinner(char blocks[9]){
     return false;
 }
 
-void GameBoard::MoveHighlight(int move) {
+void GameBoard::Move(int move) {
     switch(move){
         case 1: {
             if (currentBlock < 3) currentBlock += 6;
@@ -105,35 +108,31 @@ void GameBoard::MoveHighlight(int move) {
         default:
             break;
     }
-    viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);
-    viewModel->HighlightBlock(lastBlock, false, isPlayerOne, board);
-    lastBlock = currentBlock;
 }
 
-void GameBoard::CheckInput(){
-    int input = viewModel->CheckInput();
+void GameBoard::ApplyInput(int input){
     switch (input) {
         case 1: {
             // Move highlight up
-            MoveHighlight(1);
+            Move(1);
         }
             break;
 
         case 2: {
             // Move highlight down
-            MoveHighlight(2);
+            Move(2);
         }
             break;
 
         case 3: {
             // Move highlight left
-            MoveHighlight(3);
+            Move(3);
         }
             break;
 
         case 4: {
             // move highlight right
-            MoveHighlight(4);
+            Move(4);
         }
             break;
 
@@ -169,8 +168,4 @@ bool GameBoard::MarkBoard(bool isPlayerOne, int block, char *board) {
     }
 
     return false;
-}
-
-void GameBoard::Winner(bool hasWinner) {
-    viewModel->Winner(isPlayerOne, hasWinner);
 }

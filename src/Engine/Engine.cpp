@@ -4,11 +4,6 @@
 #include "../Game/GameBoard.h"
 #include "../Game/ViewModel.h"
 
-// Creates game loop
-// Creates a Terminal
-// Creates a ViewModel and passes Terminal
-// Creates a Game and passes ViewModel
-
 using namespace std;
 
 void Engine::Init(){

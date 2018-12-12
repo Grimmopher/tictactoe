@@ -25,6 +25,7 @@ ViewModel::ViewModel(shared_ptr<Terminal> t) {
 }
 
 void ViewModel::InitBoard() {
+    lastBlock = 0;
 
     // default board color
     terminal->ChangeColors(3);
@@ -54,6 +55,12 @@ void ViewModel::InitBoard() {
     terminal->Print("     |     |     ");
 
     PrintInstructions();
+
+    // clear any left over messages
+    terminal->MoveCursor(0, MessageY);
+    terminal->ClearLine();
+
+    terminal->MoveCursor(IdleCursorX, IdleCursorY);
 }
 
 void ViewModel::PrintInstructions() {
@@ -187,6 +194,17 @@ void ViewModel::ChangePlayer(bool isPlayerOne) {
     // default board color
     terminal->ChangeColors(3);
     PrintPlayers(isPlayerOne);
+}
+
+void ViewModel::ApplyTurnState(char *board, int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie) {
+    //TODO: make a model class for model parameters
+    ChangePlayer(isPlayerOne);
+
+    HighlightBlock(currentBlock, true, isPlayerOne, board);
+    HighlightBlock(lastBlock, false, isPlayerOne, board);
+    lastBlock = currentBlock;
+
+    if(hasWinner || isTie) Winner(isPlayerOne, hasWinner);
 }
 
 void ViewModel::Print(const char *input) {

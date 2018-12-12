@@ -21,17 +21,25 @@ private:
     int MessageY;
     int IdleCursorX;
     int IdleCursorY;
+    int lastBlock;
+
     void PrintPlayers(bool isPlayerOne);
     void PrintInstructions();
-public:
-    explicit ViewModel(std::shared_ptr<Terminal> t);
-    void InitBoard();
+
     void HighlightBlock(int block, bool highlight, bool isPlayerOne, char board[9]);
-    int CheckInput();
-    void Print(const char * input);
-    void MoveCursor(int x, int y);
     void Winner(bool isPlayerOne, bool hasWinner);
     void ChangePlayer(bool isPlayerOne);
+public:
+    explicit ViewModel(std::shared_ptr<Terminal> t);
+
+    void InitBoard();
+    int CheckInput();
+
+    void ApplyTurnState(char board[9], int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie);
+
+    // for debug
+    void Print(const char * input);
+    void MoveCursor(int x, int y);
 };
 
 

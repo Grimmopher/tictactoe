@@ -12,16 +12,16 @@ private:
     bool resetGame;
     bool nextTurn;
     bool isPlayerOne;
-    int lastBlock;
+    bool hasWinner;
+    bool isTie;
     int currentBlock;
     int turns;
     char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
     bool CheckWinner(char blocks[9]);
     bool MarkBoard(bool isPlayerOne, int block, char board[9]);
-    void MoveHighlight(int move);
-    void CheckInput();
+    void Move(int move);
+    void ApplyInput(int input);
     void ResetBoard();
-    void Winner(bool hasWinner);
 
 public:
     explicit GameBoard(std::shared_ptr<ViewModel> vm);

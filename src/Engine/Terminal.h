@@ -8,6 +8,7 @@ public:
     void ChangeColors(int color);
     void SetBold(bool isBold);
     void Print(const char *input);
+    void ClearLine();
     void MoveCursor(int x, int y);
     int CheckInput();
     void Render();
