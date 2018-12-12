@@ -15,6 +15,9 @@ void ViewModel::InitBoard() {
     int x = boardX;
     int y = boardY;
 
+    // default board color
+    terminal->ChangeColors(3);
+
     terminal->MoveCursor(x,y);
     terminal->Print("     |     |     ");
     terminal->MoveCursor(x,++y);

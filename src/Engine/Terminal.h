@@ -6,6 +6,7 @@ class Terminal {
 public:
     Terminal();
     void ChangeColors(int color);
+    void SetBold(bool isBold);
     void Print(const char *input);
     void MoveCursor(int x, int y);
     int CheckInput();

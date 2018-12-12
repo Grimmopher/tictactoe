@@ -15,6 +15,7 @@ Terminal::Terminal() {
     init_pair(1, COLOR_MAGENTA, COLOR_CYAN);
     init_pair(2, COLOR_CYAN, COLOR_MAGENTA);
     init_pair(3, COLOR_WHITE, COLOR_BLACK);
+    init_pair(4, COLOR_GREEN, COLOR_BLACK);
 
     refresh();
 }
@@ -86,4 +87,12 @@ void Terminal::ChangeColors(int color) {
 Terminal::~Terminal() {
     // end curses
     endwin();
+}
+
+void Terminal::SetBold(bool isBold) {
+    if (isBold) {
+        attron(A_BOLD);
+    } else {
+        attroff(A_BOLD);
+    }
 }
