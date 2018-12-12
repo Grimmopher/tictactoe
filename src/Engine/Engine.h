@@ -1,5 +1,5 @@
-#ifndef MYAPP_ENGINE_H
-#define MYAPP_ENGINE_H
+#ifndef TICTACTOE_ENGINE_H
+#define TICTACTOE_ENGINE_H
 
 
 class Engine {
@@ -8,4 +8,4 @@ public:
 };
 
 
-#endif //MYAPP_ENGINE_H
+#endif

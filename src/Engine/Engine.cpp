@@ -2,20 +2,23 @@
 #include "Engine.h"
 #include "Terminal.h"
 #include "../Game/GameBoard.h"
+#include "../Game/ViewModel.h"
 
 // Creates game loop
 // Creates a Terminal
-// Creates a Game and passes Terminal
+// Creates a ViewModel and passes Terminal
+// Creates a Game and passes ViewModel
 
 using namespace std;
 
 void Engine::Init(){
-    auto renderer = make_shared<Terminal>();
-    auto gameBoard = make_shared<GameBoard>(renderer);
+    auto terminal = make_shared<Terminal>();
+    auto viewModel = make_shared<ViewModel>(terminal);
+    auto gameBoard = make_shared<GameBoard>(viewModel);
 
     while (true) {
         gameBoard->Tick();
-        renderer->Render();
+        terminal->Render();
 
         if(gameBoard->ShouldExit()) break;
     }
