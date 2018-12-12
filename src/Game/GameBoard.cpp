@@ -1,5 +1,4 @@
 #include <utility>
-
 #include <iostream>
 #include "GameBoard.h"
 
@@ -14,10 +13,16 @@ void GameBoard::ResetBoard() {
     // setup board
     exitGame = false;
     resetGame = false;
+    nextTurn = false;
+    isPlayerOne = true;
     currentBlock = 0;
     lastBlock = 0;
+    turns = 0;
+    for (char &i : board) {
+        i = ' ';
+    }
     viewModel->InitBoard();
-    viewModel->HighlightBlock(currentBlock, true);
+    viewModel->HighlightBlock(currentBlock, true, board);
     // setup players
     // setup instructions
 }
@@ -25,8 +30,22 @@ void GameBoard::ResetBoard() {
 void GameBoard::Tick() {
     // check for input
     CheckInput();
-    // apply changes for input
-    // check for winner
+
+    // if mark placed
+    if (nextTurn) {
+        // check for winner
+        bool hasWinner = CheckWinner(board);
+        ++turns;
+        if (hasWinner) {
+            Winner(true);
+        } else if (turns >= 9) {
+            Winner(false);
+        } else {
+            // change player
+            isPlayerOne = !isPlayerOne;
+            nextTurn = false;
+        }
+    }
 
     if(resetGame) ResetBoard();
 }
@@ -36,21 +55,21 @@ bool GameBoard::ShouldExit() {
 }
 
 bool GameBoard::CheckWinner(char blocks[9]){
-    if (blocks[0] == blocks[1] && blocks[1] == blocks[2])
+    if (blocks[0] != ' ' && blocks[1] != ' ' && blocks[2] != ' ' && blocks[0] == blocks[1] && blocks[1] == blocks[2])
         return true;
-    else if (blocks[3] == blocks[4] == blocks[5])
+    else if (blocks[3] != ' ' && blocks[4] != ' ' && blocks[5] != ' ' && blocks[3] == blocks[4] && blocks[4] == blocks[5])
         return true;
-    else if (blocks[6] == blocks[7] == blocks[8])
+    else if (blocks[6] != ' ' && blocks[7] != ' ' && blocks[8] != ' ' && blocks[6] == blocks[7] && blocks[7] == blocks[8])
         return true;
-    else if (blocks[0] == blocks[3] == blocks[6])
+    else if (blocks[0] != ' ' && blocks[3] != ' ' && blocks[6] != ' ' && blocks[0] == blocks[3] && blocks[3] == blocks[6])
         return true;
-    else if (blocks[1] == blocks[4] == blocks[7])
+    else if (blocks[1] != ' ' && blocks[4] != ' ' && blocks[7] != ' ' && blocks[1] == blocks[4] && blocks[4] == blocks[7])
         return true;
-    else if (blocks[2] == blocks[5] == blocks[8])
+    else if (blocks[2] != ' ' && blocks[5] != ' ' && blocks[8] != ' ' && blocks[2] == blocks[5] && blocks[5] == blocks[8])
         return true;
-    else if (blocks[0] == blocks[4] == blocks[8])
+    else if (blocks[0] != ' ' && blocks[4] != ' ' && blocks[8] != ' ' && blocks[0] == blocks[4] && blocks[4] == blocks[8])
         return true;
-    else if (blocks[6] == blocks[5] == blocks[2])
+    else if (blocks[6] != ' ' && blocks[5] != ' ' && blocks[2] != ' ' && blocks[6] == blocks[5] && blocks[5] == blocks[2])
         return true;
     return false;
 }
@@ -83,8 +102,8 @@ void GameBoard::MoveHighlight(int move) {
         default:
             break;
     }
-    viewModel->HighlightBlock(currentBlock, true);
-    viewModel->HighlightBlock(lastBlock, false);
+    viewModel->HighlightBlock(currentBlock, true, board);
+    viewModel->HighlightBlock(lastBlock, false, board);
     lastBlock = currentBlock;
 }
 
@@ -118,6 +137,7 @@ void GameBoard::CheckInput(){
         case 5: {
             //return key
             //mark block for player
+            nextTurn = MarkBoard(isPlayerOne, currentBlock, board);
             break;
         }
         case 6: {
@@ -133,4 +153,23 @@ void GameBoard::CheckInput(){
         default:
             break;
     }
+}
+
+bool GameBoard::MarkBoard(bool isPlayerOne, int block, char *board) {
+    char marker = isPlayerOne ? 'X' : 'O';
+
+    if (block < 0 || block > 8) return false;
+
+    if (board[block] == ' ') {
+        board[block] = marker;
+        // print marker
+        viewModel->HighlightBlock(currentBlock, true, board);
+        return true;
+    }
+
+    return false;
+}
+
+void GameBoard::Winner(bool hasWinner) {
+    viewModel->Winner(isPlayerOne, hasWinner);
 }

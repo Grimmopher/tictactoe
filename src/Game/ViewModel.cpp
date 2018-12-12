@@ -1,4 +1,5 @@
 #include <memory>
+#include <string>
 #include "ViewModel.h"
 #include "../Engine/Terminal.h"
 
@@ -21,7 +22,7 @@ void ViewModel::InitBoard() {
     terminal->Print("     |     |     \n");
 }
 
-void ViewModel::HighlightBlock(int block, bool highlight) {
+void ViewModel::HighlightBlock(int block, bool highlight, char board[9]) {
     int x = 0;
     int y = 0;
 
@@ -85,7 +86,11 @@ void ViewModel::HighlightBlock(int block, bool highlight) {
     terminal->MoveCursor(x,y);
     terminal->Print("     ");
     terminal->MoveCursor(x,++y);
-    terminal->Print("     ");
+
+    string str;
+    str = str + "  " + board[block] + "  ";
+
+    terminal->Print(str.c_str());
     terminal->MoveCursor(x,++y);
     if (y < 6) terminal->Print("_____");
     else terminal->Print("     ");
@@ -102,4 +107,14 @@ void ViewModel::Print(const char *input) {
 
 void ViewModel::MoveCursor(int x, int y) {
     terminal->MoveCursor(x,y);
+}
+
+void ViewModel::Winner(bool isPlayerOne, bool hasWinner) {
+    if (hasWinner) {
+        string msg = isPlayerOne ? "Player One" : "Player Two";
+        msg = msg + " is the winner!";
+        terminal->Print(msg.c_str());
+    } else {
+        terminal->Print("TIE");
+    }
 }

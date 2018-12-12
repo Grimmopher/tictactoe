@@ -10,14 +10,18 @@ private:
     std::shared_ptr<ViewModel> viewModel;
     bool exitGame;
     bool resetGame;
+    bool nextTurn;
+    bool isPlayerOne;
     int lastBlock;
     int currentBlock;
-    char board[9] = {' '};
+    int turns;
+    char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
     bool CheckWinner(char blocks[9]);
+    bool MarkBoard(bool isPlayerOne, int block, char board[9]);
     void MoveHighlight(int move);
     void CheckInput();
     void ResetBoard();
-
+    void Winner(bool hasWinner);
 
 public:
     explicit GameBoard(std::shared_ptr<ViewModel> vm);
