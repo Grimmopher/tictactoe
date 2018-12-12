@@ -95,7 +95,7 @@ void ViewModel::PrintPlayers(bool isPlayerOne) {
     terminal->SetBold(false);
 }
 
-void ViewModel::HighlightBlock(int block, bool highlight, bool isPlayerOne, char board[9]) {
+void ViewModel::HighlightBlock(int block, int highlight, char board[9]) {
     int x = boardX;
     int y = boardY;
 
@@ -151,12 +151,7 @@ void ViewModel::HighlightBlock(int block, bool highlight, bool isPlayerOne, char
     // 1 is highlighted cyan
     // 2 is highlighted magenta
     // 3 is no highlight
-    if (highlight) {
-        int color = isPlayerOne ? 1 : 2;
-        terminal->ChangeColors(color);
-    } else {
-        terminal->ChangeColors(3);
-    }
+    terminal->ChangeColors(highlight);
 
     terminal->MoveCursor(x,y);
     terminal->Print("     ");
@@ -199,24 +194,35 @@ void ViewModel::ChangePlayer(bool isPlayerOne) {
     PrintPlayers(isPlayerOne);
 }
 
-void ViewModel::ApplyTurnState(char *board, int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie) {
+void ViewModel::ApplyTurnState(char *board, int *winningBlocks, int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie) {
     //TODO: make a model class for model parameters
     ChangePlayer(isPlayerOne);
 
     // Highlight current block if there are still turns
     if(hasWinner || isTie) {
-        HighlightBlock(currentBlock, false, isPlayerOne, board);
+        HighlightBlock(currentBlock, 3, board);
     } else {
-        HighlightBlock(currentBlock, true, isPlayerOne, board);
+        int color = isPlayerOne ? 1 : 2;
+        HighlightBlock(currentBlock, color, board);
     }
 
     // Remove highlight on previous block
     if(lastBlock != currentBlock) {
-        HighlightBlock(lastBlock, false, isPlayerOne, board);
+        HighlightBlock(lastBlock, 3, board);
     }
     lastBlock = currentBlock;
 
-    if(hasWinner || isTie) Winner(isPlayerOne, hasWinner);
+    if(hasWinner || isTie) {
+        Winner(isPlayerOne, hasWinner);
+        // Highlight winning blocks
+        if(hasWinner) {
+            terminal->SetBold(true);
+            HighlightBlock(winningBlocks[0], 4, board);
+            HighlightBlock(winningBlocks[1], 4, board);
+            HighlightBlock(winningBlocks[2], 4, board);
+            terminal->SetBold(false);
+        }
+    }
 }
 
 void ViewModel::Print(const char *input) {

@@ -26,7 +26,7 @@ private:
     void PrintPlayers(bool isPlayerOne);
     void PrintInstructions();
 
-    void HighlightBlock(int block, bool highlight, bool isPlayerOne, char board[9]);
+    void HighlightBlock(int block, int highlight, char board[9]);
     void Winner(bool isPlayerOne, bool hasWinner);
     void ChangePlayer(bool isPlayerOne);
 public:
@@ -35,7 +35,7 @@ public:
     void InitBoard();
     int CheckInput();
 
-    void ApplyTurnState(char board[9], int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie);
+    void ApplyTurnState(char board[9], int winningBlocks[3], int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie);
 
     // for debug
     void Print(const char * input);

@@ -17,6 +17,7 @@ private:
     int currentBlock;
     int turns;
     char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+    int winningBlocks[3] = {-1, -1, -1};
     bool CheckWinner(char blocks[9]);
     bool MarkBoard(bool isPlayerOne, int block, char board[9]);
     void Move(int move);

@@ -69,20 +69,8 @@ void Terminal::MoveCursor(int x, int y) {
 
 void Terminal::ChangeColors(int color) {
     // change colors
-    // TODO: make this more generic
-    switch (color) {
-        case 1:
-            attron(COLOR_PAIR(1));
-            break;
-        case 2:
-            attron(COLOR_PAIR(2));
-            break;
-        case 3:
-            attron(COLOR_PAIR(3));
-        default:
-            attron(COLOR_PAIR(3));
-            break;
-    }
+    if (color > 4) color = 3;
+    attron(COLOR_PAIR(color));
 }
 
 Terminal::~Terminal() {

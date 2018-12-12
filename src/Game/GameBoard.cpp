@@ -25,8 +25,13 @@ void GameBoard::ResetBoard() {
         i = ' ';
     }
 
+    // reset winning blocks
+    for (int &i : winningBlocks) {
+        i = -1;
+    }
+
     viewModel->InitBoard();
-    viewModel->ApplyTurnState(board, currentBlock, isPlayerOne, hasWinner, isTie);
+    viewModel->ApplyTurnState(board, winningBlocks, currentBlock, isPlayerOne, hasWinner, isTie);
 }
 
 void GameBoard::Tick() {
@@ -51,29 +56,9 @@ void GameBoard::Tick() {
         }
     }
 
-    viewModel->ApplyTurnState(board, currentBlock, isPlayerOne, hasWinner, isTie);
+    viewModel->ApplyTurnState(board, winningBlocks, currentBlock, isPlayerOne, hasWinner, isTie);
 
     if(resetGame) ResetBoard();
-}
-
-bool GameBoard::CheckWinner(char blocks[9]){
-    if (blocks[0] != ' ' && blocks[1] != ' ' && blocks[2] != ' ' && blocks[0] == blocks[1] && blocks[1] == blocks[2])
-        return true;
-    else if (blocks[3] != ' ' && blocks[4] != ' ' && blocks[5] != ' ' && blocks[3] == blocks[4] && blocks[4] == blocks[5])
-        return true;
-    else if (blocks[6] != ' ' && blocks[7] != ' ' && blocks[8] != ' ' && blocks[6] == blocks[7] && blocks[7] == blocks[8])
-        return true;
-    else if (blocks[0] != ' ' && blocks[3] != ' ' && blocks[6] != ' ' && blocks[0] == blocks[3] && blocks[3] == blocks[6])
-        return true;
-    else if (blocks[1] != ' ' && blocks[4] != ' ' && blocks[7] != ' ' && blocks[1] == blocks[4] && blocks[4] == blocks[7])
-        return true;
-    else if (blocks[2] != ' ' && blocks[5] != ' ' && blocks[8] != ' ' && blocks[2] == blocks[5] && blocks[5] == blocks[8])
-        return true;
-    else if (blocks[0] != ' ' && blocks[4] != ' ' && blocks[8] != ' ' && blocks[0] == blocks[4] && blocks[4] == blocks[8])
-        return true;
-    else if (blocks[6] != ' ' && blocks[4] != ' ' && blocks[2] != ' ' && blocks[6] == blocks[4] && blocks[4] == blocks[2])
-        return true;
-    return false;
 }
 
 void GameBoard::Move(int move) {
@@ -165,6 +150,58 @@ bool GameBoard::MarkBoard(bool isPlayerOne, int block, char *board) {
         return true;
     }
 
+    return false;
+}
+
+bool GameBoard::CheckWinner(char blocks[9]){
+    if (blocks[0] != ' ' && blocks[1] != ' ' && blocks[2] != ' ' && blocks[0] == blocks[1] && blocks[1] == blocks[2]){
+        winningBlocks[0] = 0;
+        winningBlocks[1] = 1;
+        winningBlocks[2] = 2;
+        return true;
+    }
+    else if (blocks[3] != ' ' && blocks[4] != ' ' && blocks[5] != ' ' && blocks[3] == blocks[4] && blocks[4] == blocks[5]){
+        winningBlocks[0] = 3;
+        winningBlocks[1] = 4;
+        winningBlocks[2] = 5;
+        return true;
+    }
+    else if (blocks[6] != ' ' && blocks[7] != ' ' && blocks[8] != ' ' && blocks[6] == blocks[7] && blocks[7] == blocks[8]){
+        winningBlocks[0] = 6;
+        winningBlocks[1] = 7;
+        winningBlocks[2] = 8;
+        return true;
+    }
+    else if (blocks[0] != ' ' && blocks[3] != ' ' && blocks[6] != ' ' && blocks[0] == blocks[3] && blocks[3] == blocks[6]){
+        winningBlocks[0] = 0;
+        winningBlocks[1] = 3;
+        winningBlocks[2] = 6;
+        return true;
+    }
+    else if (blocks[1] != ' ' && blocks[4] != ' ' && blocks[7] != ' ' && blocks[1] == blocks[4] && blocks[4] == blocks[7]){
+        winningBlocks[0] = 1;
+        winningBlocks[1] = 4;
+        winningBlocks[2] = 7;
+        return true;
+    }
+    else if (blocks[2] != ' ' && blocks[5] != ' ' && blocks[8] != ' ' && blocks[2] == blocks[5] && blocks[5] == blocks[8]){
+        winningBlocks[0] = 2;
+        winningBlocks[1] = 5;
+        winningBlocks[2] = 8;
+        return true;
+    }
+    else if (blocks[0] != ' ' && blocks[4] != ' ' && blocks[8] != ' ' && blocks[0] == blocks[4] && blocks[4] == blocks[8]){
+        winningBlocks[0] = 0;
+        winningBlocks[1] = 4;
+        winningBlocks[2] = 8;
+        return true;
+    }
+    else if (blocks[6] != ' ' && blocks[4] != ' ' && blocks[2] != ' ' && blocks[6] == blocks[4] && blocks[4] == blocks[2]){
+        winningBlocks[0] = 6;
+        winningBlocks[1] = 4;
+        winningBlocks[2] = 2;
+        return true;
+    }
     return false;
 }
 
