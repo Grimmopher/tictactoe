@@ -43,6 +43,7 @@ void GameBoard::Tick() {
         } else {
             // change player
             isPlayerOne = !isPlayerOne;
+            viewModel->ChangePlayer(isPlayerOne);
             nextTurn = false;
             // print marker
             viewModel->HighlightBlock(currentBlock, true, isPlayerOne, board);

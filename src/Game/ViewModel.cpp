@@ -7,8 +7,19 @@ using namespace std;
 
 ViewModel::ViewModel(shared_ptr<Terminal> t) {
     terminal = t;
-    boardX = 5;
-    boardY = 5;
+    boardX = 11;
+    boardY = 7;
+    Player1X = 8;
+    Player1Y = 5;
+    Player2X = 22;
+    Player2Y = 5;
+    TitleX = 14;
+    TitleY = 3;
+    InstructionsX = 5;
+    InstructionsY = 20;
+
+    IdleCursorX = 0;
+    IdleCursorY = 0;
 }
 
 void ViewModel::InitBoard() {
@@ -17,6 +28,11 @@ void ViewModel::InitBoard() {
 
     // default board color
     terminal->ChangeColors(3);
+
+    terminal->MoveCursor(TitleX,TitleY);
+    terminal->Print("Tic Tac Toe");
+
+    PrintPlayers(true);
 
     terminal->MoveCursor(x,y);
     terminal->Print("     |     |     ");
@@ -36,6 +52,38 @@ void ViewModel::InitBoard() {
     terminal->Print("     |     |     ");
     terminal->MoveCursor(x,++y);
     terminal->Print("     |     |     ");
+
+    PrintInstructions();
+}
+
+void ViewModel::PrintInstructions() {
+    terminal->MoveCursor(InstructionsX, InstructionsY);
+    terminal->SetBold(true);
+    terminal->Print("Instructions");
+    terminal->SetBold(false);
+
+    terminal->MoveCursor(InstructionsX, InstructionsY + 2);
+    terminal->Print("Arrow Keys: move");
+    terminal->MoveCursor(InstructionsX, InstructionsY + 3);
+    terminal->Print("Return: place mark");
+    terminal->MoveCursor(InstructionsX, InstructionsY + 4);
+    terminal->Print("R: reset board");
+    terminal->MoveCursor(InstructionsX, InstructionsY + 5);
+    terminal->Print("X: exit");
+}
+
+void ViewModel::PrintPlayers(bool isPlayerOne) {
+    if(isPlayerOne) terminal->SetBold(true);
+
+    terminal->MoveCursor(Player1X, Player1Y);
+    terminal->Print("Player One");
+    terminal->SetBold(false);
+
+    if(!isPlayerOne) terminal->SetBold(true);
+
+    terminal->MoveCursor(Player2X, Player2Y);
+    terminal->Print("Player Two");
+    terminal->SetBold(false);
 }
 
 void ViewModel::HighlightBlock(int block, bool highlight, bool isPlayerOne, char board[9]) {
@@ -112,7 +160,7 @@ void ViewModel::HighlightBlock(int block, bool highlight, bool isPlayerOne, char
     terminal->MoveCursor(x,++y);
     if (y < boardY + 6) terminal->Print("_____");
     else terminal->Print("     ");
-    terminal->MoveCursor(0,20);
+    terminal->MoveCursor(IdleCursorX,IdleCursorY);
 }
 
 int ViewModel::CheckInput() {
@@ -135,4 +183,10 @@ void ViewModel::Winner(bool isPlayerOne, bool hasWinner) {
     } else {
         terminal->Print("TIE");
     }
+}
+
+void ViewModel::ChangePlayer(bool isPlayerOne) {
+    // default board color
+    terminal->ChangeColors(3);
+    PrintPlayers(isPlayerOne);
 }
