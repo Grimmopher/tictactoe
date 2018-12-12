@@ -4,20 +4,15 @@
 
 #include <memory>
 #include "ViewModel.h"
+#include "Model.h"
 
 class GameBoard {
 private:
     std::shared_ptr<ViewModel> viewModel;
     bool exitGame;
     bool resetGame;
-    bool nextTurn;
-    bool isPlayerOne;
-    bool hasWinner;
-    bool isTie;
-    int currentBlock;
-    int turns;
-    char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
-    int winningBlocks[3] = {-1, -1, -1};
+    Model model;
+
     bool CheckWinner(char blocks[9]);
     bool MarkBoard(bool isPlayerOne, int block, char board[9]);
     void Move(int move);

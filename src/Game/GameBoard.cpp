@@ -6,32 +6,17 @@ using namespace std;
 
 GameBoard::GameBoard(std::shared_ptr<ViewModel> vm) {
     viewModel = move(vm);
+    model = Model();
     ResetBoard();
 }
 
 void GameBoard::ResetBoard() {
     // setup board
-    hasWinner = false;
-    isTie = false;
     exitGame = false;
-    resetGame = false;
-    nextTurn = false;
-    isPlayerOne = true;
-    currentBlock = 0;
-    turns = 0;
-
-    // set all markers blank
-    for (char &i : board) {
-        i = ' ';
-    }
-
-    // reset winning blocks
-    for (int &i : winningBlocks) {
-        i = -1;
-    }
+    model.Reset();
 
     viewModel->InitBoard();
-    viewModel->ApplyTurnState(board, winningBlocks, currentBlock, isPlayerOne, hasWinner, isTie);
+    viewModel->ApplyTurnState(model);
 }
 
 void GameBoard::Tick() {
@@ -40,52 +25,52 @@ void GameBoard::Tick() {
     ApplyInput(input);
 
     // if mark placed
-    if (nextTurn) {
+    if (model.nextTurn) {
         // check for winner
-        hasWinner = CheckWinner(board);
-        ++turns;
+        model.hasWinner = CheckWinner(model.board);
+        ++model.turns;
 
-        if (!hasWinner) {
-            if (turns >= 9) {
-                isTie = true;
+        if (!model.hasWinner) {
+            if (model.turns >= 9) {
+                model.isTie = true;
             } else {
                 // change player
-                isPlayerOne = !isPlayerOne;
-                nextTurn = false;
+                model.isPlayerOne = !model.isPlayerOne;
+                model.nextTurn = false;
             }
         }
     }
 
-    viewModel->ApplyTurnState(board, winningBlocks, currentBlock, isPlayerOne, hasWinner, isTie);
+    viewModel->ApplyTurnState(model);
 
     if(resetGame) ResetBoard();
 }
 
 void GameBoard::Move(int move) {
-    if(hasWinner || isTie) return;
+    if(model.hasWinner || model.isTie) return;
 
     switch(move){
         case 1: {
-            if (currentBlock < 3) currentBlock += 6;
-            else currentBlock -= 3;
+            if (model.currentBlock < 3) model.currentBlock += 6;
+            else model.currentBlock -= 3;
         }
             break;
 
         case 2: {
-            if (currentBlock > 5) currentBlock -= 6;
-            else currentBlock+= 3;
+            if (model.currentBlock > 5) model.currentBlock -= 6;
+            else model.currentBlock+= 3;
         }
             break;
 
         case 3: {
-            if (currentBlock % 3 == 0) currentBlock += 2;
-            else currentBlock -= 1;
+            if (model.currentBlock % 3 == 0) model.currentBlock += 2;
+            else model.currentBlock -= 1;
         }
             break;
 
         case 4: {
-            if (((currentBlock + 1) % 3) == 0) currentBlock -= 2;
-            else currentBlock += 1;
+            if (((model.currentBlock + 1) % 3) == 0) model.currentBlock -= 2;
+            else model.currentBlock += 1;
         }
             break;
         default:
@@ -122,7 +107,7 @@ void GameBoard::ApplyInput(int input){
         case 5: {
             //return key
             //mark block for player
-            nextTurn = MarkBoard(isPlayerOne, currentBlock, board);
+            model.nextTurn = MarkBoard(model.isPlayerOne, model.currentBlock, model.board);
             break;
         }
         case 6: {
@@ -155,51 +140,51 @@ bool GameBoard::MarkBoard(bool isPlayerOne, int block, char *board) {
 
 bool GameBoard::CheckWinner(char blocks[9]){
     if (blocks[0] != ' ' && blocks[1] != ' ' && blocks[2] != ' ' && blocks[0] == blocks[1] && blocks[1] == blocks[2]){
-        winningBlocks[0] = 0;
-        winningBlocks[1] = 1;
-        winningBlocks[2] = 2;
+        model.winningBlocks[0] = 0;
+        model.winningBlocks[1] = 1;
+        model.winningBlocks[2] = 2;
         return true;
     }
     else if (blocks[3] != ' ' && blocks[4] != ' ' && blocks[5] != ' ' && blocks[3] == blocks[4] && blocks[4] == blocks[5]){
-        winningBlocks[0] = 3;
-        winningBlocks[1] = 4;
-        winningBlocks[2] = 5;
+        model.winningBlocks[0] = 3;
+        model.winningBlocks[1] = 4;
+        model.winningBlocks[2] = 5;
         return true;
     }
     else if (blocks[6] != ' ' && blocks[7] != ' ' && blocks[8] != ' ' && blocks[6] == blocks[7] && blocks[7] == blocks[8]){
-        winningBlocks[0] = 6;
-        winningBlocks[1] = 7;
-        winningBlocks[2] = 8;
+        model.winningBlocks[0] = 6;
+        model.winningBlocks[1] = 7;
+        model.winningBlocks[2] = 8;
         return true;
     }
     else if (blocks[0] != ' ' && blocks[3] != ' ' && blocks[6] != ' ' && blocks[0] == blocks[3] && blocks[3] == blocks[6]){
-        winningBlocks[0] = 0;
-        winningBlocks[1] = 3;
-        winningBlocks[2] = 6;
+        model.winningBlocks[0] = 0;
+        model.winningBlocks[1] = 3;
+        model.winningBlocks[2] = 6;
         return true;
     }
     else if (blocks[1] != ' ' && blocks[4] != ' ' && blocks[7] != ' ' && blocks[1] == blocks[4] && blocks[4] == blocks[7]){
-        winningBlocks[0] = 1;
-        winningBlocks[1] = 4;
-        winningBlocks[2] = 7;
+        model.winningBlocks[0] = 1;
+        model.winningBlocks[1] = 4;
+        model.winningBlocks[2] = 7;
         return true;
     }
     else if (blocks[2] != ' ' && blocks[5] != ' ' && blocks[8] != ' ' && blocks[2] == blocks[5] && blocks[5] == blocks[8]){
-        winningBlocks[0] = 2;
-        winningBlocks[1] = 5;
-        winningBlocks[2] = 8;
+        model.winningBlocks[0] = 2;
+        model.winningBlocks[1] = 5;
+        model.winningBlocks[2] = 8;
         return true;
     }
     else if (blocks[0] != ' ' && blocks[4] != ' ' && blocks[8] != ' ' && blocks[0] == blocks[4] && blocks[4] == blocks[8]){
-        winningBlocks[0] = 0;
-        winningBlocks[1] = 4;
-        winningBlocks[2] = 8;
+        model.winningBlocks[0] = 0;
+        model.winningBlocks[1] = 4;
+        model.winningBlocks[2] = 8;
         return true;
     }
     else if (blocks[6] != ' ' && blocks[4] != ' ' && blocks[2] != ' ' && blocks[6] == blocks[4] && blocks[4] == blocks[2]){
-        winningBlocks[0] = 6;
-        winningBlocks[1] = 4;
-        winningBlocks[2] = 2;
+        model.winningBlocks[0] = 6;
+        model.winningBlocks[1] = 4;
+        model.winningBlocks[2] = 2;
         return true;
     }
     return false;

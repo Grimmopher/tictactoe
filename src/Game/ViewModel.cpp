@@ -95,7 +95,7 @@ void ViewModel::PrintPlayers(bool isPlayerOne) {
     terminal->SetBold(false);
 }
 
-void ViewModel::HighlightBlock(int block, int highlight, char board[9]) {
+void ViewModel::HighlightBlock(int block, int highlight, const char board[9]) {
     int x = boardX;
     int y = boardY;
 
@@ -194,32 +194,31 @@ void ViewModel::ChangePlayer(bool isPlayerOne) {
     PrintPlayers(isPlayerOne);
 }
 
-void ViewModel::ApplyTurnState(char *board, int *winningBlocks, int currentBlock, bool isPlayerOne, bool hasWinner, bool isTie) {
-    //TODO: make a model class for model parameters
-    ChangePlayer(isPlayerOne);
+void ViewModel::ApplyTurnState(const Model& model) {
+    ChangePlayer(model.isPlayerOne);
 
     // Highlight current block if there are still turns
-    if(hasWinner || isTie) {
-        HighlightBlock(currentBlock, 3, board);
+    if(model.hasWinner || model.isTie) {
+        HighlightBlock(model.currentBlock, 3, model.board);
     } else {
-        int color = isPlayerOne ? 1 : 2;
-        HighlightBlock(currentBlock, color, board);
+        int color = model.isPlayerOne ? 1 : 2;
+        HighlightBlock(model.currentBlock, color, model.board);
     }
 
     // Remove highlight on previous block
-    if(lastBlock != currentBlock) {
-        HighlightBlock(lastBlock, 3, board);
+    if(lastBlock != model.currentBlock) {
+        HighlightBlock(lastBlock, 3, model.board);
     }
-    lastBlock = currentBlock;
+    lastBlock = model.currentBlock;
 
-    if(hasWinner || isTie) {
-        Winner(isPlayerOne, hasWinner);
+    if(model.hasWinner || model.isTie) {
+        Winner(model.isPlayerOne, model.hasWinner);
         // Highlight winning blocks
-        if(hasWinner) {
+        if(model.hasWinner) {
             terminal->SetBold(true);
-            HighlightBlock(winningBlocks[0], 4, board);
-            HighlightBlock(winningBlocks[1], 4, board);
-            HighlightBlock(winningBlocks[2], 4, board);
+            HighlightBlock(model.winningBlocks[0], 4, model.board);
+            HighlightBlock(model.winningBlocks[1], 4, model.board);
+            HighlightBlock(model.winningBlocks[2], 4, model.board);
             terminal->SetBold(false);
         }
     }
